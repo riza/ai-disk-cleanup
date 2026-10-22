@@ -149,7 +149,8 @@
 
 - 各ステップのあとに新しい空き容量を表示し、進捗が見えるようにしてください。
 - `rm -rf` ではなく、各ツール自身のクリーンアップコマンドを優先してください。
-  - `git worktree remove --force <パス>` のあとに `git worktree prune`
+  - `git worktree remove <パス>` のあとに `git worktree prune`
+  - 拒否された場合（変更済みまたは未追跡のファイルがある場合）は、止まって報告してください。コミットされていない作業を破棄することを私が明示的に承認するまで、`--force` は付けないでください。
   - `npm cache clean --force`、`pnpm store prune`、`go clean -modcache`
   - `brew cleanup -s --prune=all` / `apt-get clean && apt autoremove`
   - `dnf clean all` / `paccache -rk1` / `snap remove --revision`

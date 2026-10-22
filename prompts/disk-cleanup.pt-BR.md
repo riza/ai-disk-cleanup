@@ -153,7 +153,8 @@ quero apagar, por exemplo "1, 4, 7" ou "Downloads: só os .ipsw". Então:
 
 - Depois de cada passo, imprima o novo espaço livre para eu acompanhar o progresso.
 - Prefira o comando de limpeza de cada ferramenta em vez de `rm -rf`:
-  - `git worktree remove --force <caminho>` e depois `git worktree prune`
+  - `git worktree remove <caminho>` e depois `git worktree prune`
+  - Se recusar (arquivos modificados ou não rastreados), pare e reporte. Nunca adicione `--force` a menos que eu aprove explicitamente descartar esse trabalho não commitado.
   - `npm cache clean --force`, `pnpm store prune`, `go clean -modcache`
   - `brew cleanup -s --prune=all` / `apt-get clean && apt autoremove`
   - `dnf clean all` / `paccache -rk1` / `snap remove --revision`

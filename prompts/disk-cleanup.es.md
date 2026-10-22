@@ -154,7 +154,8 @@ o nombres que quiero borrar, por ejemplo "1, 4, 7" o "Downloads: solo los .ipsw"
 
 - Después de cada paso, imprime el nuevo espacio libre para que yo vea el progreso.
 - Prefiere el comando de limpieza propio de cada herramienta antes que `rm -rf`:
-  - `git worktree remove --force <ruta>` y luego `git worktree prune`
+  - `git worktree remove <ruta>` y luego `git worktree prune`
+  - Si se niega (archivos modificados o sin seguimiento), detente e informa. Nunca añadas `--force` salvo que yo apruebe explícitamente descartar ese trabajo sin confirmar.
   - `npm cache clean --force`, `pnpm store prune`, `go clean -modcache`
   - `brew cleanup -s --prune=all` / `apt-get clean && apt autoremove`
   - `dnf clean all` / `paccache -rk1` / `snap remove --revision`

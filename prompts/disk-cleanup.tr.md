@@ -153,7 +153,8 @@ ya da isimleri yazar, örneğin "1, 4, 7" ya da "Downloads: sadece .ipsw". Sonra
 
 - Her adımdan sonra yeni boş alanı yaz, ilerlemeyi göreyim.
 - `rm -rf` yerine her aracın kendi temizleme komutunu tercih et:
-  - `git worktree remove --force <yol>` ardından `git worktree prune`
+  - `git worktree remove <yol>` ardından `git worktree prune`
+  - Komut reddederse (değiştirilmiş veya takipsiz dosya varsa), dur ve bildir. Commit edilmemiş bu işi silmeyi ben açıkça onaylamadıkça `--force` ekleme.
   - `npm cache clean --force`, `pnpm store prune`, `go clean -modcache`
   - `brew cleanup -s --prune=all` / `apt-get clean && apt autoremove`
   - `dnf clean all` / `paccache -rk1` / `snap remove --revision`

@@ -151,7 +151,8 @@ names to remove, for example "1, 4, 7" or "Downloads: only the .ipsw". Then:
 
 - After each step, print the new free space so I can watch progress.
 - Prefer each tool's own cleanup command over `rm -rf`:
-  - `git worktree remove --force <path>` then `git worktree prune`
+  - `git worktree remove <path>` then `git worktree prune`
+  - If it refuses (modified or untracked files), stop and report. Never add `--force` unless I explicitly approve discarding that uncommitted work.
   - `npm cache clean --force`, `pnpm store prune`, `go clean -modcache`
   - `brew cleanup -s --prune=all` / `apt-get clean && apt autoremove`
   - `dnf clean all` / `paccache -rk1` / `snap remove --revision`

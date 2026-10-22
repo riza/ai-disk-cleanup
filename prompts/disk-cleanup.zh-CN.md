@@ -144,7 +144,8 @@
 
 - 每做完一步，打印新的可用空间，让我能看到进度。
 - 优先使用各工具自带的清理命令，而不是 `rm -rf`：
-  - `git worktree remove --force <路径>`，然后 `git worktree prune`
+  - `git worktree remove <路径>`，然后 `git worktree prune`
+  - 如果命令拒绝执行（有已修改或未跟踪的文件），停下来汇报。除非我明确批准丢弃这些未提交的工作，否则绝不加 `--force`。
   - `npm cache clean --force`、`pnpm store prune`、`go clean -modcache`
   - `brew cleanup -s --prune=all` / `apt-get clean && apt autoremove`
   - `dnf clean all` / `paccache -rk1` / `snap remove --revision`

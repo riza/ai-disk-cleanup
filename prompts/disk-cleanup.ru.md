@@ -155,7 +155,8 @@
 
 - После каждого шага выводи новое свободное место, чтобы я видел прогресс.
 - Предпочитай собственную команду очистки каждого инструмента вместо `rm -rf`:
-  - `git worktree remove --force <путь>`, затем `git worktree prune`
+  - `git worktree remove <путь>`, затем `git worktree prune`
+  - Если команда отказывает (есть изменённые или неотслеживаемые файлы), остановись и доложи. Никогда не добавляй `--force`, пока я явно не одобрю удаление этой незафиксированной работы.
   - `npm cache clean --force`, `pnpm store prune`, `go clean -modcache`
   - `brew cleanup -s --prune=all` / `apt-get clean && apt autoremove`
   - `dnf clean all` / `paccache -rk1` / `snap remove --revision`
