@@ -46,6 +46,8 @@ reports back in. Shell commands stay in English in every translation.
 
 ## Disclaimer
 
+**Nothing is deleted without your explicit approval — not even caches.** If it deletes anything you did not name, that is a bug: stop it and [open an issue](https://github.com/riza/ai-disk-cleanup/issues).
+
 **The prompt asks for approval — it cannot enforce it.** Stopping to ask is an
 instruction in the text; what actually guarantees the pause is your agent's permission
 mode. Run it somewhere tool calls need your confirmation (Claude Code's normal permission

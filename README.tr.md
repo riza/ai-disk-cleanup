@@ -48,6 +48,8 @@ Kabuk komutları her çeviride İngilizce kalıyor.
 
 ## Sorumluluk reddi
 
+**Açıkça onaylamadığın hiçbir şey silinmez — cache bile olsa.** Adını vermediğin bir şeyi silerse bu bir hatadır: durdur ve [issue aç](https://github.com/riza/ai-disk-cleanup/issues).
+
 **Prompt onay ister — ama onayı zorunlu kılamaz.** Durup sormak metindeki bir talimattır;
 duraklamayı gerçekten garanti eden şey ajanın izin modudur. Araç çağrılarının senin
 onayını gerektirdiği bir yerde çalıştır (Claude Code'un normal izin istemleri, Cursor'ın

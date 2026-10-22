@@ -49,6 +49,8 @@ te reportar. Os comandos de shell permanecem em inglês em todas as traduções.
 
 ## Aviso
 
+**Nada é apagado sem a sua aprovação explícita — nem mesmo caches.** Se ele apagar algo que você não citou, isso é um bug: pare e [abra uma issue](https://github.com/riza/ai-disk-cleanup/issues).
+
 **O prompt pede aprovação — ele não consegue garanti-la.** Parar para perguntar é uma
 instrução no texto; o que de fato garante a pausa é o modo de permissões do seu agente.
 Rode-o onde as chamadas de ferramenta exijam a sua confirmação (os avisos de permissão

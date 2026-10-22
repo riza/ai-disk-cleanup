@@ -50,6 +50,8 @@ agente te informa. Los comandos de shell quedan en inglés en todas las traducci
 
 ## Aviso legal
 
+**No se borra nada sin tu aprobación explícita — ni siquiera las cachés.** Si borra algo que no nombraste, es un error: deténlo y [abre un issue](https://github.com/riza/ai-disk-cleanup/issues).
+
 **El prompt pide aprobación — no puede imponerla.** Detenerse a preguntar es una
 instrucción del texto; lo que realmente garantiza la pausa es el modo de permisos de tu
 agente. Ejecútalo donde las llamadas a herramientas requieran tu confirmación (los avisos
