@@ -46,6 +46,24 @@ sorusu geldiğinde cevapla, sana verdiği yetkili komutları çalıştır.
 Prompt'un dili süs değil, işlev: ajanın hangi dilde rapor vereceğini de belirliyor.
 Kabuk komutları her çeviride İngilizce kalıyor.
 
+## Sorumluluk reddi
+
+**Prompt onay ister — ama onayı zorunlu kılamaz.** Durup sormak metindeki bir talimattır;
+duraklamayı gerçekten garanti eden şey ajanın izin modudur. Araç çağrılarının senin
+onayını gerektirdiği bir yerde çalıştır (Claude Code'un normal izin istemleri, Cursor'ın
+ask modu vb.), **auto-approve / "yolo" modunda değil.** Başıboş çalışan bir ajan, sen
+kademe tablosunu görmeden silmeye başlayabilir.
+
+**Cevap vermeden önce kademe tablosunu oku.** Hem bildirdiği boyutlar hem de neyin
+yeniden üretilebilir olduğuna dair kararı yanlış olabilir. Diskinde ne olduğunu sen
+bilirsin; o `du` çıktısından tahmin yürütüyor.
+
+**Silmek geri alınamaz.** Bu komutlar dosyaları çöp kutusuna taşımaz. Başlamadan önce,
+özellikle Kademe 2 veya Kademe 3'ü onaylamadan önce, güvendiğin bir yedeğin olsun.
+
+**Garanti verilmez.** Bu prompt olduğu gibi sunulur. Komutlar senin makinende çalışır,
+sonuç senin sorumluluğundadır.
+
 ## Yöntem
 
 1. **İşletim sistemini tespit et** — sonra yalnızca o platformun komutlarını kullan.

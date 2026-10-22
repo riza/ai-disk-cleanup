@@ -48,6 +48,26 @@ te entregue.
 El idioma del prompt es funcional, no decorativo: también fija el idioma en el que el
 agente te informa. Los comandos de shell quedan en inglés en todas las traducciones.
 
+## Aviso legal
+
+**El prompt pide aprobación — no puede imponerla.** Detenerse a preguntar es una
+instrucción del texto; lo que realmente garantiza la pausa es el modo de permisos de tu
+agente. Ejecútalo donde las llamadas a herramientas requieran tu confirmación (los avisos
+de permiso normales de Claude Code, el modo ask de Cursor, etc.) y **no** en un modo de
+aprobación automática o "yolo". Un agente sin supervisión puede borrar cosas antes de que
+hayas visto la tabla de niveles.
+
+**Lee la tabla de niveles antes de responder.** Tanto los tamaños que informa como su
+criterio sobre qué es regenerable pueden estar equivocados. Tú sabes qué hay en tu disco;
+él lo está deduciendo de la salida de `du`.
+
+**Borrar es irreversible.** Estos comandos no mueven los archivos a la papelera. Ten una
+copia de seguridad en la que confíes antes de empezar, y sobre todo antes de aprobar el
+Nivel 2 o el Nivel 3.
+
+**Sin garantía.** Este prompt se ofrece tal cual. Los comandos se ejecutan en tu máquina y
+el resultado es tu responsabilidad.
+
 ## El método
 
 1. **Detectar el SO** — y usar solo los comandos y rutas de esa plataforma.

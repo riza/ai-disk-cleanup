@@ -47,6 +47,26 @@ ele te entregar.
 O idioma do prompt é funcional, não enfeite: ele também define em que idioma o agente vai
 te reportar. Os comandos de shell permanecem em inglês em todas as traduções.
 
+## Aviso
+
+**O prompt pede aprovação — ele não consegue garanti-la.** Parar para perguntar é uma
+instrução no texto; o que de fato garante a pausa é o modo de permissões do seu agente.
+Rode-o onde as chamadas de ferramenta exijam a sua confirmação (os avisos de permissão
+normais do Claude Code, o modo ask do Cursor etc.) e **não** em modo de aprovação
+automática ou "yolo". Um agente rodando sem supervisão pode apagar coisas antes de você ver
+a tabela de níveis.
+
+**Leia a tabela de níveis antes de responder.** Tanto os tamanhos que ele reporta quanto o
+julgamento dele sobre o que é regenerável podem estar errados. Você sabe o que tem no seu
+disco; ele está inferindo da saída do `du`.
+
+**Apagar é irreversível.** Esses comandos não mandam os arquivos para a lixeira. Tenha um
+backup em que você confie antes de começar, e principalmente antes de aprovar o Nível 2 ou
+o Nível 3.
+
+**Sem garantia.** Este prompt é fornecido como está. Os comandos rodam na sua máquina e o
+resultado é responsabilidade sua.
+
 ## O método
 
 1. **Detectar o SO** — e usar apenas os comandos e caminhos daquela plataforma.

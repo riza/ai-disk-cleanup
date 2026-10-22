@@ -44,6 +44,24 @@ agent. Answer the tier question when it comes, and run the elevated commands it 
 The prompt's language is functional, not cosmetic: it also sets the language the agent
 reports back in. Shell commands stay in English in every translation.
 
+## Disclaimer
+
+**The prompt asks for approval — it cannot enforce it.** Stopping to ask is an
+instruction in the text; what actually guarantees the pause is your agent's permission
+mode. Run it somewhere tool calls need your confirmation (Claude Code's normal permission
+prompts, Cursor's ask mode, and so on) and **not** in an auto-approve / "yolo" mode. An
+agent running unattended can delete things before you have seen the tier table.
+
+**Read the tier table before you answer.** The sizes it reports and its judgment of what
+is regenerable can both be wrong. You know what is on your disk; it is inferring from
+`du` output.
+
+**Deleting is irreversible.** These commands do not move files to the trash. Have a backup
+you trust before you start, and especially before approving Tier 2 or Tier 3.
+
+**No warranty.** This prompt is provided as is. The commands run on your machine, and the
+outcome is your responsibility.
+
 ## The method
 
 1. **Detect the OS** — then use only that platform's commands and paths.
