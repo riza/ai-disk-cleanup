@@ -2,7 +2,7 @@
 
 **AI ajanıyla disk alanı geri kazanımı — ölçülmüş, kademeli ve onaylı.**
 
-🇬🇧 [English](README.md)
+[English](README.md) · **Türkçe** · [简体中文](README.zh-CN.md) · [Español](README.es.md) · [Русский](README.ru.md) · [Português (BR)](README.pt-BR.md) · [日本語](README.ja.md)
 
 Sahada denenmiş bir prompt: herhangi bir AI kodlama ajanını (Claude Code, Cursor,
 Codex, …) dikkatli bir disk denetçisine çeviriyor. Diski üstten aşağı tarar, bulduğunu
@@ -28,15 +28,21 @@ korkulukları birlikte kodluyor.
 
 ## Kullanım
 
-Dilini seç ve prompt'u ajanına yapıştır:
+Dilini seç, dosyayı aç, `---` çizgisinin altındaki her şeyi ajanına yapıştır. Kademe
+sorusu geldiğinde cevapla, sana verdiği yetkili komutları çalıştır.
 
-| | Dosya |
+| Dil | Prompt |
 |---|---|
-| 🇹🇷 Türkçe | [`prompts/disk-cleanup.tr.md`](prompts/disk-cleanup.tr.md) |
-| 🇬🇧 İngilizce | [`prompts/disk-cleanup.en.md`](prompts/disk-cleanup.en.md) |
+| Türkçe | [`prompts/disk-cleanup.tr.md`](prompts/disk-cleanup.tr.md) |
+| İngilizce | [`prompts/disk-cleanup.en.md`](prompts/disk-cleanup.en.md) |
+| 简体中文 (Çince) | [`prompts/disk-cleanup.zh-CN.md`](prompts/disk-cleanup.zh-CN.md) |
+| Español (İspanyolca) | [`prompts/disk-cleanup.es.md`](prompts/disk-cleanup.es.md) |
+| Русский (Rusça) | [`prompts/disk-cleanup.ru.md`](prompts/disk-cleanup.ru.md) |
+| Português (BR) | [`prompts/disk-cleanup.pt-BR.md`](prompts/disk-cleanup.pt-BR.md) |
+| 日本語 (Japonca) | [`prompts/disk-cleanup.ja.md`](prompts/disk-cleanup.ja.md) |
 
-`---` çizgisinin altındaki her şey prompt'un kendisi. Yapıştır, kademe sorusu
-geldiğinde cevapla, sana verdiği yetkili komutları çalıştır.
+Prompt'un dili süs değil, işlev: ajanın hangi dilde rapor vereceğini de belirliyor.
+Kabuk komutları her çeviride İngilizce kalıyor.
 
 ## Yöntem
 
@@ -84,10 +90,25 @@ satırlıkları olarak geri verildi — prompt tam olarak bunu şart koşuyor.
 ## Depo yapısı
 
     prompts/
-      disk-cleanup.tr.md    Türkçe prompt
-      disk-cleanup.en.md    İngilizce prompt
-    README.tr.md            Bu dosya
-    README.md               İngilizce README
+      disk-cleanup.en.md       İngilizce (kaynak)
+      disk-cleanup.tr.md       Türkçe
+      disk-cleanup.zh-CN.md    Basitleştirilmiş Çince
+      disk-cleanup.es.md       İspanyolca
+      disk-cleanup.ru.md       Rusça
+      disk-cleanup.pt-BR.md    Brezilya Portekizcesi
+      disk-cleanup.ja.md       Japonca
+    README.tr.md               Bu dosya; her dil için bir README daha var
+
+## Çeviriler
+
+**İngilizce kaynaktır.** Bir çeviri `prompts/disk-cleanup.en.md` ile çelişirse İngilizce
+sürüm geçerlidir. Yöntemi değiştirirken önce İngilizce prompt'u değiştir, sonra
+değişikliği diğerlerine taşı.
+
+Yeni çeviriler memnuniyetle: `disk-cleanup.en.md`'yi kopyala, her kabuk komutunu olduğu
+gibi bırak, yalnızca açıklama metnini çevir ve dosyayı BCP 47 koduyla adlandır
+(`disk-cleanup.<kod>.md`). Eşleşen bir `README.<kod>.md` ekle ve yukarıdaki tablolara
+bir satır at.
 
 ## Güven üzerine bir not
 
@@ -95,3 +116,10 @@ Prompt, ajana diskte bulduğu her şeyi **talimat değil veri** olarak görmesin
 — indirilmiş bir klasörün içindeki dosya adı ya da README, onu daha fazla silmeye
 ikna edemez. Ayrıca `sudo`'nun etrafından dolaşmayı yasaklıyor. Çalıştırmadan önce
 prompt'u oku; kısa tutulmasının sebebi bu.
+
+## Yazar & destek
+
+**Rıza Sabuncu** tarafından yazıldı.
+
+- 𝕏 [@rizasabuncu](https://x.com/rizasabuncu)
+- ☕ [Bana bir kahve ısmarla](https://buymeacoffee.com/rizasabuncu) — bir hafta sonunu disk arkeolojisinden kurtardıysa

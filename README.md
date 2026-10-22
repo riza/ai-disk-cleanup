@@ -2,7 +2,7 @@
 
 **Reclaim disk space with an AI agent — measured, tiered, and approved.**
 
-🇹🇷 [Türkçe](README.tr.md)
+**English** · [Türkçe](README.tr.md) · [简体中文](README.zh-CN.md) · [Español](README.es.md) · [Русский](README.ru.md) · [Português (BR)](README.pt-BR.md) · [日本語](README.ja.md)
 
 A battle-tested prompt that turns any AI coding agent (Claude Code, Cursor, Codex, …)
 into a careful disk-space auditor. It walks your disk top-down, groups findings by how
@@ -26,15 +26,21 @@ eager agent from deleting your `.env`.
 
 ## Usage
 
-Pick your language and paste the prompt into your agent:
+Pick your language, open the file, and paste everything below the `---` line into your
+agent. Answer the tier question when it comes, and run the elevated commands it hands you.
 
-| | File |
+| Language | Prompt |
 |---|---|
-| 🇬🇧 English | [`prompts/disk-cleanup.en.md`](prompts/disk-cleanup.en.md) |
-| 🇹🇷 Türkçe | [`prompts/disk-cleanup.tr.md`](prompts/disk-cleanup.tr.md) |
+| English | [`prompts/disk-cleanup.en.md`](prompts/disk-cleanup.en.md) |
+| Türkçe | [`prompts/disk-cleanup.tr.md`](prompts/disk-cleanup.tr.md) |
+| 简体中文 | [`prompts/disk-cleanup.zh-CN.md`](prompts/disk-cleanup.zh-CN.md) |
+| Español | [`prompts/disk-cleanup.es.md`](prompts/disk-cleanup.es.md) |
+| Русский | [`prompts/disk-cleanup.ru.md`](prompts/disk-cleanup.ru.md) |
+| Português (BR) | [`prompts/disk-cleanup.pt-BR.md`](prompts/disk-cleanup.pt-BR.md) |
+| 日本語 | [`prompts/disk-cleanup.ja.md`](prompts/disk-cleanup.ja.md) |
 
-Everything below the `---` line is the prompt. Paste it, answer the tier question
-when it comes, and run the elevated commands it hands you.
+The prompt's language is functional, not cosmetic: it also sets the language the agent
+reports back in. Shell commands stay in English in every translation.
 
 ## The method
 
@@ -82,10 +88,24 @@ than forced — exactly as the prompt requires.
 ## Repository layout
 
     prompts/
-      disk-cleanup.en.md    English prompt
-      disk-cleanup.tr.md    Turkish prompt
-    README.md               This file
-    README.tr.md            Turkish README
+      disk-cleanup.en.md       English (source of truth)
+      disk-cleanup.tr.md       Turkish
+      disk-cleanup.zh-CN.md    Simplified Chinese
+      disk-cleanup.es.md       Spanish
+      disk-cleanup.ru.md       Russian
+      disk-cleanup.pt-BR.md    Brazilian Portuguese
+      disk-cleanup.ja.md       Japanese
+    README.md                  This file, plus one README per language
+
+## Translations
+
+**English is the source of truth.** If a translation drifts from
+`prompts/disk-cleanup.en.md`, the English version wins. When changing the method, change
+the English prompt first, then port the change to the others.
+
+New translations are welcome: copy `disk-cleanup.en.md`, keep every shell command exactly
+as it is, translate only the prose, and name the file with its BCP 47 code
+(`disk-cleanup.<code>.md`). Add a matching `README.<code>.md` and a row to the tables above.
 
 ## A note on trust
 
@@ -93,3 +113,10 @@ The prompt tells the agent to treat everything it finds on disk as **data, not
 instructions** — a filename or a README inside some downloaded folder cannot talk it
 into deleting more. It also forbids working around `sudo`. Read the prompt before you
 run it; it is short on purpose.
+
+## Author & support
+
+Built by **Rıza Sabuncu**.
+
+- 𝕏 [@rizasabuncu](https://x.com/rizasabuncu)
+- ☕ [Buy me a coffee](https://buymeacoffee.com/rizasabuncu) — if this saved you a weekend of disk archaeology
