@@ -112,7 +112,6 @@ macOS，494 GB 磁盘，**已用 99%，仅剩 5.2 GB**：
 
 ## 作者与支持
 
-由 **Rıza Sabuncu** 编写。
+由 **Rıza Sabuncu** 编写。如果它帮你省下了一个周末的磁盘考古，欢迎请我喝杯咖啡。
 
-- 𝕏 [@rizasabuncu](https://x.com/rizasabuncu)
-- ☕ [请我喝杯咖啡](https://buymeacoffee.com/rizasabuncu) —— 如果它帮你省下了一个周末的磁盘考古
+[![X](https://img.shields.io/badge/X-%40rizasabuncu-000000?style=flat&logo=x&logoColor=white)](https://x.com/rizasabuncu) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/rizasabuncu)

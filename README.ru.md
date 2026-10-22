@@ -120,7 +120,6 @@ macOS, диск 494 ГБ, **заполнен на 99%, свободно 5,2 ГБ
 
 ## Автор и поддержка
 
-Автор — **Rıza Sabuncu**.
+Автор — **Rıza Sabuncu**. Если это сэкономило вам выходные на дисковой археологии, буду рад кофе.
 
-- 𝕏 [@rizasabuncu](https://x.com/rizasabuncu)
-- ☕ [Купить мне кофе](https://buymeacoffee.com/rizasabuncu) — если это сэкономило вам выходные на дисковой археологии
+[![X](https://img.shields.io/badge/X-%40rizasabuncu-000000?style=flat&logo=x&logoColor=white)](https://x.com/rizasabuncu) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/rizasabuncu)

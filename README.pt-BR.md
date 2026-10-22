@@ -123,7 +123,6 @@ curto de propósito.
 
 ## Autor e apoio
 
-Feito por **Rıza Sabuncu**.
+Feito por **Rıza Sabuncu**. Se isso te poupou um fim de semana de arqueologia de disco, um café cai bem.
 
-- 𝕏 [@rizasabuncu](https://x.com/rizasabuncu)
-- ☕ [Me pague um café](https://buymeacoffee.com/rizasabuncu) — se isso te poupou um fim de semana de arqueologia de disco
+[![X](https://img.shields.io/badge/X-%40rizasabuncu-000000?style=flat&logo=x&logoColor=white)](https://x.com/rizasabuncu) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/rizasabuncu)

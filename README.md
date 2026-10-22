@@ -116,7 +116,6 @@ run it; it is short on purpose.
 
 ## Author & support
 
-Built by **Rıza Sabuncu**.
+Built by **Rıza Sabuncu**. If this saved you a weekend of disk archaeology, a coffee is appreciated.
 
-- 𝕏 [@rizasabuncu](https://x.com/rizasabuncu)
-- ☕ [Buy me a coffee](https://buymeacoffee.com/rizasabuncu) — if this saved you a weekend of disk archaeology
+[![X](https://img.shields.io/badge/X-%40rizasabuncu-000000?style=flat&logo=x&logoColor=white)](https://x.com/rizasabuncu) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/rizasabuncu)

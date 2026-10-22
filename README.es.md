@@ -123,7 +123,6 @@ ejecutarlo; es corto a propósito.
 
 ## Autor y apoyo
 
-Creado por **Rıza Sabuncu**.
+Creado por **Rıza Sabuncu**. Si te ahorró un fin de semana de arqueología de disco, se agradece un café.
 
-- 𝕏 [@rizasabuncu](https://x.com/rizasabuncu)
-- ☕ [Invítame un café](https://buymeacoffee.com/rizasabuncu) — si te ahorró un fin de semana de arqueología de disco
+[![X](https://img.shields.io/badge/X-%40rizasabuncu-000000?style=flat&logo=x&logoColor=white)](https://x.com/rizasabuncu) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/rizasabuncu)

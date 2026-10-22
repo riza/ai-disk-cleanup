@@ -119,7 +119,6 @@ prompt'u oku; kısa tutulmasının sebebi bu.
 
 ## Yazar & destek
 
-**Rıza Sabuncu** tarafından yazıldı.
+**Rıza Sabuncu** tarafından yazıldı. Bir hafta sonunu disk arkeolojisinden kurtardıysa, bir kahve iyi gider.
 
-- 𝕏 [@rizasabuncu](https://x.com/rizasabuncu)
-- ☕ [Bana bir kahve ısmarla](https://buymeacoffee.com/rizasabuncu) — bir hafta sonunu disk arkeolojisinden kurtardıysa
+[![X](https://img.shields.io/badge/X-%40rizasabuncu-000000?style=flat&logo=x&logoColor=white)](https://x.com/rizasabuncu) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/rizasabuncu)

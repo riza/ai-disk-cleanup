@@ -117,7 +117,6 @@ macOS、494 GB のディスク、**使用率 99%、残り 5.2 GB**：
 
 ## 作者とサポート
 
-**Rıza Sabuncu** が作成しました。
+**Rıza Sabuncu** が作成しました。ディスク考古学に費やす週末を救えたなら、コーヒーを一杯いただけると嬉しいです。
 
-- 𝕏 [@rizasabuncu](https://x.com/rizasabuncu)
-- ☕ [コーヒーをおごる](https://buymeacoffee.com/rizasabuncu) — ディスク考古学に費やす週末を救えたなら
+[![X](https://img.shields.io/badge/X-%40rizasabuncu-000000?style=flat&logo=x&logoColor=white)](https://x.com/rizasabuncu) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/rizasabuncu)
