@@ -2,6 +2,8 @@
 
 **Recupere espaço em disco com um agente de IA — medido, em níveis e com a sua aprovação.**
 
+[![X](https://img.shields.io/badge/X-%40rizasabuncu-000000?style=flat&logo=x&logoColor=white)](https://x.com/rizasabuncu) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/rizasabuncu)
+
 [English](README.md) · [Türkçe](README.tr.md) · [简体中文](README.zh-CN.md) · [Español](README.es.md) · [Русский](README.ru.md) · **Português (BR)** · [日本語](README.ja.md)
 
 Um prompt testado na prática que transforma qualquer agente de IA (Claude Code, Cursor,

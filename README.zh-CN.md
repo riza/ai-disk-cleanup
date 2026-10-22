@@ -2,6 +2,8 @@
 
 **用 AI Agent 回收磁盘空间 —— 先测量，再分档，经你批准才动手。**
 
+[![X](https://img.shields.io/badge/X-%40rizasabuncu-000000?style=flat&logo=x&logoColor=white)](https://x.com/rizasabuncu) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/rizasabuncu)
+
 [English](README.md) · [Türkçe](README.tr.md) · **简体中文** · [Español](README.es.md) · [Русский](README.ru.md) · [Português (BR)](README.pt-BR.md) · [日本語](README.ja.md)
 
 一个经过实战验证的提示词，把任意 AI 编程 Agent（Claude Code、Cursor、Codex……）变成一个

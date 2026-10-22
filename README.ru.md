@@ -2,6 +2,8 @@
 
 **Освобождение места на диске с помощью ИИ-агента — с измерением, по уровням и с вашего одобрения.**
 
+[![X](https://img.shields.io/badge/X-%40rizasabuncu-000000?style=flat&logo=x&logoColor=white)](https://x.com/rizasabuncu) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/rizasabuncu)
+
 [English](README.md) · [Türkçe](README.tr.md) · [简体中文](README.zh-CN.md) · [Español](README.es.md) · **Русский** · [Português (BR)](README.pt-BR.md) · [日本語](README.ja.md)
 
 Проверенный на практике промпт, который превращает любой ИИ-агент (Claude Code, Cursor,

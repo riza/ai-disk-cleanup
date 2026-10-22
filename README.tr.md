@@ -2,6 +2,8 @@
 
 **AI ajanıyla disk alanı geri kazanımı — ölçülmüş, kademeli ve onaylı.**
 
+[![X](https://img.shields.io/badge/X-%40rizasabuncu-000000?style=flat&logo=x&logoColor=white)](https://x.com/rizasabuncu) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/rizasabuncu)
+
 [English](README.md) · **Türkçe** · [简体中文](README.zh-CN.md) · [Español](README.es.md) · [Русский](README.ru.md) · [Português (BR)](README.pt-BR.md) · [日本語](README.ja.md)
 
 Sahada denenmiş bir prompt: herhangi bir AI kodlama ajanını (Claude Code, Cursor,
