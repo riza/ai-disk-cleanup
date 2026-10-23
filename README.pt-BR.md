@@ -1,38 +1,56 @@
 # ai-disk-cleanup
 
-**Recupere espaço em disco com um agente de IA — medido, em níveis e com a sua aprovação.**
+**Descubra o que está enchendo o seu disco com um agente de IA — sem deixar que ele apague nada que você não aprovou.**
 
 [![X](https://img.shields.io/badge/X-%40rizasabuncu-000000?style=flat&logo=x&logoColor=white)](https://x.com/rizasabuncu) [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/rizasabuncu)
 
 [English](README.md) · [Türkçe](README.tr.md) · [简体中文](README.zh-CN.md) · [Español](README.es.md) · [Русский](README.ru.md) · **Português (BR)** · [日本語](README.ja.md)
 
-Um prompt testado na prática que transforma qualquer agente de IA (Claude Code, Cursor,
-Codex, …) num auditor de disco cuidadoso. Ele percorre o seu disco de cima para baixo,
-agrupa o que encontra pelo quanto você se arrependeria de apagar e **espera a sua aprovação
-antes de tocar em qualquer coisa**.
+Um prompt e duas ferramentas pequenas. O agente (Claude Code, Codex, Cursor, …) mede o seu
+disco no macOS, Linux ou Windows, explica cada item grande e pergunta sobre cada um. Por
+padrão ele **nunca apaga nada sozinho**: ele escreve um plano, e você roda o plano com um
+script que confere cada caminho de novo e pergunta y/N por item.
 
-Funciona em **macOS, Linux e Windows**.
+Um prompt é só um pedido; o agente pode ignorá-lo. Por isso este repositório não depende só
+do prompt. A segurança vem de onde a exclusão acontece, e de um sandbox ou um hook que
+bloqueia o agente fisicamente.
 
-## Por que não fazer `du | sort` na mão?
+## Dois modos
 
-Porque os maiores ganhos quase nunca estão onde você olha primeiro, e os números óbvios
-mentem:
+| | **Modo plano** (padrão) | **Modo execução** (opcional) |
+|---|---|---|
+| Quem apaga | Você, rodando `run-plan` | O agente, um item aprovado por comando |
+| O que o agente pode escrever | Só `cleanup-plan.txt` | Exclusões aprovadas, cada uma confirmada por você |
+| O que garante isso | Sandbox do SO (recomendado) + o guard hook | O guard hook + modo de permissão Manual |
+| Funciona com | Qualquer agente | Claude Code no macOS, Linux ou WSL2 |
 
-- Um `Docker.raw` que informava **60 GB** ocupava de fato **14 GB**. Apagá-lo com base no
-  tamanho aparente teria colocado um número errado no relatório.
-- O verdadeiro campeão era um diretório de **23 GB** cheio de worktrees de `git` mortos de
-  uma refatoração abandonada — invisível para qualquer checklist de "limpe seus caches".
-- Dois runtimes de simulador de iOS de **15 GB** cada, de versões que ninguém mais mira,
-  estavam em `/Library`, onde uma varredura só do diretório pessoal nunca chega.
+Use o modo plano, a menos que tenha um motivo para não usar.
 
-O prompt codifica o método que acha essas coisas, junto com as travas que impedem um agente
-animado de apagar o seu `.env`.
+## Início rápido — modo plano
 
-## Uso
+**1. Inicie o agente numa pasta vazia, dentro de um sandbox.** O sandbox deixa ele ler o
+seu disco, mas o sistema operacional o impede de escrever fora daquela pasta.
 
-Escolha seu idioma, abra o arquivo e cole no seu agente tudo que está abaixo da linha
-`---`. Responda quando ele perguntar sobre os níveis e rode os comandos com privilégio que
-ele te entregar.
+Claude Code (macOS, Linux, WSL2):
+
+```bash
+mkdir -p ~/disk-audit && cd ~/disk-audit
+```
+
+```bash
+claude --settings '{"sandbox": {"enabled": true, "allowUnsandboxedCommands": false, "failIfUnavailable": true}}'
+```
+
+Codex (macOS, Linux, WSL2 e Windows nativo):
+
+```bash
+codex --sandbox workspace-write --ask-for-approval on-request
+```
+
+O Claude Code não tem sandbox no Windows nativo; lá, use o Codex, o Claude Code dentro do
+WSL2 ou, no mínimo, o guard hook abaixo.
+
+**2. Cole o prompt** no seu idioma:
 
 | Idioma | Prompt |
 |---|---|
@@ -44,106 +62,161 @@ ele te entregar.
 | Русский | [`prompts/disk-cleanup.ru.md`](prompts/disk-cleanup.ru.md) |
 | 日本語 | [`prompts/disk-cleanup.ja.md`](prompts/disk-cleanup.ja.md) |
 
-O idioma do prompt é funcional, não enfeite: ele também define em que idioma o agente vai
-te reportar. Os comandos de shell permanecem em inglês em todas as traduções.
+O idioma do prompt também define em que idioma o agente te responde.
+
+**3. Responda às perguntas dele.** Ele mostra uma tabela numerada, um item por linha. Você
+responde com os números que quer remover e ele os escreve em `cleanup-plan.txt`.
+
+**4. Leia o plano e rode você mesmo** com `tools/run-plan.sh` (ou `run-plan.ps1`) de um
+clone deste repositório. Leia o script antes; ele é curto.
+
+```bash
+bash run-plan.sh --dry-run cleanup-plan.txt
+```
+
+```bash
+bash run-plan.sh cleanup-plan.txt
+```
+
+No Windows, numa janela normal (não elevada) do PowerShell 7:
+
+```powershell
+pwsh -File run-plan.ps1 cleanup-plan.txt
+```
+
+## O que o run-plan confere
+
+Antes de cada item, e de novo depois que você responde y:
+
+- o caminho é absoluto e literal: sem `~`, curingas ou `..`;
+- não é um symlink, junction ou marcador de posição da nuvem, e nenhuma pasta-pai é;
+- não é um local protegido: pastas do sistema, a sua pasta pessoal e as pastas de primeiro
+  nível dela, chaves e keychains, e-mail, bibliotecas de fotos, pastas sincronizadas;
+- não é a raiz de um repositório ou worktree de git;
+- dentro de um repositório git, ele é ignorado pelo git, então não pode ser o seu código;
+- itens `cmd` são um único comando sem `sudo`, `rm`, pipes, encadeamento, redirecionamento,
+  `git worktree remove --force` ou `docker … --volumes`.
+
+Ele se recusa a rodar como root ou elevado. Itens que precisam de elevação aparecem no
+final para você conferir e rodar na mão. Resposta vazia ou fim da entrada significa não.
+
+## Modo execução (Claude Code)
+
+Só se você quiser que o próprio agente apague. O modo execução não pode usar o sandbox,
+porque o sandbox bloqueia escritas fora da pasta de trabalho; então a proteção são o guard
+hook e a sua confirmação de cada comando.
+
+1. Instale o guard:
+
+   ```bash
+   mkdir -p ~/.ai-disk-cleanup && cp guard/disk_guard.py ~/.ai-disk-cleanup/
+   ```
+
+2. Coloque [`guard/settings.example.json`](guard/settings.example.json) na pasta da
+   auditoria como `.claude/settings.json`.
+3. Inicie o Claude Code lá no modo de permissão **Manual** (não auto, não bypass):
+
+   ```bash
+   AI_DISK_CLEANUP_MODE=execute claude
+   ```
+
+4. Digite "execute mode" no chat.
+
+O guard roda antes de toda chamada de Bash e das ferramentas de arquivo, em qualquer modo
+de permissão:
+
+- **Modo plano** (`AI_DISK_CLEANUP_MODE` não definida): só passam comandos de medição —
+  `du`, `df`, `ls`, `find` sem `-delete`/`-exec`, `git status`, `docker system df` e
+  parecidos. Todo o resto é bloqueado. As ferramentas de arquivo só podem escrever
+  `cleanup-plan*.txt` na pasta de trabalho. Vale a pena instalá-lo também no modo plano.
+- **Modo execução:** além disso, um conjunto fixo de comandos de exclusão (`rm` de um
+  caminho conferido, `git worktree remove` sem `--force`, `npm cache clean`,
+  `xcrun simctl runtime delete`, …) é mostrado a você como aviso de permissão. Em qualquer
+  modo de permissão que não seja Manual, o guard os recusa, então nada é apagado sem o seu
+  clique.
+- Ele bloqueia `sudo`, interpretadores (`python -c`, `awk`, `bash -c`), substituição de
+  comandos, redirecionamento para arquivos e comandos de várias linhas. Ele falha fechado:
+  se o Python não estiver instalado ou o guard travar, o hook sai com código 2 e o comando
+  é bloqueado.
+
+Confira se funciona antes de começar: peça ao agente para rodar `rm -rf /tmp/probe`. O
+guard precisa recusar.
+
+## O que te protege e o que não
+
+| Camada | Impede | Não impede |
+|---|---|---|
+| Regras do prompt | Um agente cooperativo | Um agente que as ignora |
+| Modo plano | O agente apagar qualquer coisa | Você aprovar um item errado |
+| Verificações do run-plan | Symlinks, pastas protegidas, arquivos não ignorados em repos, `sudo`, comandos encadeados | Um caminho errado mas válido para o qual você disse sim |
+| Sandbox do SO | Qualquer escrita fora da pasta, por qualquer programa que o agente inicie | As ferramentas de arquivo do Claude (rodam fora dele), servidores MCP; Windows nativo para o Claude Code |
+| Guard hook | Comandos que não são de medição, escritas fora do arquivo de plano, exclusões que você não confirmou | Ferramentas MCP, a ferramenta PowerShell, ferramentas que não sejam o Claude Code, você remover o hook |
+
+O que continua sendo responsabilidade sua:
+
+- **Ler a tabela antes de responder.** Os tamanhos e o "regenerável" são o julgamento do
+  agente, e ambos podem estar errados.
+- **Apagar é permanente.** Itens `path` não passam pela lixeira. `quarantine` é reversível,
+  mas não libera nada até você esvaziar.
+- **Backups.** Um snapshot antes da limpeza é a melhor rede de segurança, mas o próprio
+  snapshot ocupa espaço em disco — justamente o que está faltando.
+- **O script do Windows** (`run-plan.ps1`) ainda não foi rodado numa máquina Windows. Use
+  `-DryRun` primeiro e reporte qualquer coisa estranha.
 
 ## Aviso
 
-**Nada é apagado sem a sua aprovação explícita — nem mesmo caches.** Se ele apagar algo que você não citou, isso é um bug: pare e [abra uma issue](https://github.com/riza/ai-disk-cleanup/issues).
+**Nada é apagado sem a sua aprovação explícita — nem mesmo caches.** Se ele apagar algo que
+você não citou, isso é um bug: pare e [abra uma issue](https://github.com/riza/ai-disk-cleanup/issues).
 
-**O prompt pede aprovação — ele não consegue garanti-la.** Parar para perguntar é uma
-instrução no texto; o que de fato garante a pausa é o modo de permissões do seu agente.
-Rode-o onde as chamadas de ferramenta exijam a sua confirmação (os avisos de permissão
-normais do Claude Code, o modo ask do Cursor etc.) e **não** em modo de aprovação
-automática ou "yolo". Um agente rodando sem supervisão pode apagar coisas antes de você ver
-a tabela de níveis.
-
-**Leia a tabela de níveis antes de responder.** Tanto os tamanhos que ele reporta quanto o
-julgamento dele sobre o que é regenerável podem estar errados. Você sabe o que tem no seu
-disco; ele está inferindo da saída do `du`.
-
-**Apagar é irreversível.** Esses comandos não mandam os arquivos para a lixeira. Tenha um
-backup em que você confie antes de começar, e principalmente antes de aprovar o Nível 2 ou
-o Nível 3.
-
-**Sem garantia.** Este prompt é fornecido como está. Os comandos rodam na sua máquina e o
+Este projeto é fornecido como está, sem garantia. Os comandos rodam na sua máquina e o
 resultado é responsabilidade sua.
 
-## O método
+## Por que não `du | sort`?
 
-1. **Detectar o SO** — e usar apenas os comandos e caminhos daquela plataforma.
-2. **Medir, nunca supor** — descer até o culpado de verdade, não até o diretório pai dele.
-3. **Conhecer as pegadinhas** — discos esparsos, symlinks contados duas vezes, snapshots
-   que retêm o espaço liberado, exclusões assíncronas, diretórios `target/` que não são do
-   Rust.
-4. **Reportar em três níveis** — e parar:
-
-   | Nível | O que | Risco |
-   |---|---|---|
-   | 1 | Caches, saída de build, downloads de pacotes, worktrees mortos | Regenerável. Nenhum. |
-   | 2 | Discos de VM, runtimes antigos de SDK, imagens de contêiner | Os dados reais lá dentro vão embora. |
-   | 3 | Downloads, perfis de navegador, apps sem uso | Decisão inteiramente sua. |
-
-5. **Executar passo a passo** — imprimindo o espaço liberado após cada etapa e usando o
-   comando de limpeza de cada ferramenta em vez de `rm -rf`.
-6. **Respeitar o limite de privilégio** — tudo que exigir `sudo` ou elevação volta para
-   você como um comando pronto, nunca é contornado.
-7. **Nunca apagar** código-fonte, histórico do git, `.env`, chaves, keychain, bibliotecas
-   de fotos e e-mail, pastas de sincronização em nuvem, discos de VMs em execução ou
-   snapshots do SO.
-8. **Resumir** — incluindo o que *você* terá de corrigir na mão depois.
+Porque os maiores ganhos quase nunca estão onde você olha primeiro, e os números óbvios
+mentem. Na execução abaixo, um `Docker.raw` que mostrava **60 GB** ocupava **14 GB**; o maior
+culpado eram **23 GB** de worktrees de git de uma refatoração abandonada; e dois runtimes de
+simulador de **15 GB** estavam em `/Library`, onde uma varredura da pasta pessoal nunca chega.
 
 ## Uma execução real
 
-macOS, disco de 494 GB, **99% cheio, com 5,2 GB livres**:
+macOS, disco de 494 GB, **99% cheio, com 5,2 GB livres**. Esta execução usou uma versão
+anterior do prompt, em que o agente apagava diretamente:
 
 | Etapa | Liberado |
 |---|---|
-| Worktrees de Claude/git mortos em um projeto | 4,9 GB |
-| Diretórios `target/` do Rust | 5,7 GB |
+| Worktrees de git sem uso em um projeto | 4,9 GB |
+| Pastas `target/` do Rust | 5,7 GB |
 | 83 × `node_modules` + caches `.next` | 18 GB |
 | `~/Library/Caches` (17 GB → 2,4 GB) | 14 GB |
-| `~/.cache`, npm, modcache do Go, Homebrew | 16 GB |
+| `~/.cache`, npm, cache de módulos do Go, Homebrew | 16 GB |
 | Runtimes de simulador iOS 17.5 + 18.0 | 36 GB |
 | Disco de VM do Docker Desktop | 14 GB |
 | Disco de VM do OrbStack | 11 GB |
 | Downloads: uma imagem de firmware de 11 GB + 42 instaladores | 14 GB |
 | **Total** | **≈111 GB** |
 
-**De 5,2 GB para 117 GB livres. De 99% para 71%.** Dois itens pertencentes ao root (um
-cache `dyld` de simulador de 10 GB e uma instalação morta do Nessus de 6 GB) foram
-devolvidos como comandos `sudo` de uma linha em vez de forçados — exatamente como o prompt
-exige.
+**De 5,2 GB para 117 GB livres.** Ela também mostrou o que esta versão corrige: os worktrees
+foram removidos com `--force` sem conferir trabalho não commitado, e os dois discos de VM
+foram apagados com os motores parados, sem olhar quais volumes havia neles.
 
 ## Estrutura do repositório
 
-    prompts/
-      disk-cleanup.en.md       Inglês (referência)
-      disk-cleanup.tr.md       Turco
-      disk-cleanup.zh-CN.md    Chinês simplificado
-      disk-cleanup.es.md       Espanhol
-      disk-cleanup.ru.md       Russo
-      disk-cleanup.pt-BR.md    Português do Brasil
-      disk-cleanup.ja.md       Japonês
-    README.pt-BR.md            Este arquivo; há um README por idioma
+    prompts/disk-cleanup.<idioma>.md   O prompt, em sete idiomas (o inglês é a referência)
+    tools/run-plan.sh                  Roda um plano no macOS e no Linux
+    tools/run-plan.ps1                 Roda um plano no Windows (PowerShell 7)
+    guard/disk_guard.py                Guard PreToolUse do Claude Code
+    guard/settings.example.json        Configuração do hook para a pasta da auditoria
+    tests/                             Testes do run-plan.sh e do guard
+
+Rode os testes com `bash tests/test_run_plan.sh` e `python3 tests/test_guard.py`.
 
 ## Traduções
 
-**O inglês é a referência.** Se uma tradução divergir de `prompts/disk-cleanup.en.md`,
-vale a versão em inglês. Ao mudar o método, mude primeiro o prompt em inglês e depois
-leve a mudança para os outros.
-
-Novas traduções são bem-vindas: copie `disk-cleanup.en.md`, mantenha todos os comandos de
-shell exatamente como estão, traduza somente o texto corrido e nomeie o arquivo com o
-código BCP 47 (`disk-cleanup.<código>.md`). Acrescente um `README.<código>.md`
-correspondente e uma linha nas tabelas acima.
-
-## Uma nota sobre confiança
-
-O prompt manda o agente tratar tudo que encontrar no disco como **dado, não instrução** —
-um nome de arquivo ou um README dentro de alguma pasta baixada não consegue convencê-lo a
-apagar mais. Ele também proíbe contornar o `sudo`. Leia o prompt antes de rodar; ele é
-curto de propósito.
+**O inglês é a referência.** Se uma tradução divergir de `prompts/disk-cleanup.en.md`, vale
+a versão em inglês. Mude primeiro o prompt em inglês, depois os outros. Novas traduções são
+bem-vindas: mantenha cada comando exatamente como está, traduza só o texto e nomeie os
+arquivos com um código BCP 47.
 
 ## Autor e apoio
 
